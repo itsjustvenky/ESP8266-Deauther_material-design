@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>ESP8266 Deauther</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="material.blue-light_blue.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>ESP8266 Deauther</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="index.html" class="mdl-layout__tab">APs</a>
+          <a href="clients.html" class="mdl-layout__tab">Clients</a>
+          <a href="attack.html" class="mdl-layout__tab">Attack</a>
+          <a href="settings.html" class="mdl-layout__tab is-active">Settings</a>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>WiFi</h4>
+                  <div style="padding-left: 10px">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="ssid" maxlength="32" minlength="1">
+                      <label class="mdl-textfield__label" for="ssid">SSID</label>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ssidHidden" style="display: inline">
+                      <input type="checkbox" name="ssidHidden" id="ssidHidden" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Hidden network</span>
+                    </label>
+                    <br>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="password" maxlength="32" minlength="8">
+                      <label class="mdl-textfield__label" for="password">Password</label>
+                    </div>
+                    <br>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="number" id="apChannel" min="1" max="14">
+                      <label class="mdl-textfield__label" for="apChannel">Channel number</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Access point scan</h4>   
+                  <div style="padding-left: 10px">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="apScanHidden">
+                      <input type="checkbox" name="apScanHidden" id="apScanHidden" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Scan for hidden networks</span>
+                    </label>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="number" id="scanTime" min="1" max="255">
+                      <label class="mdl-textfield__label" for="scanTime">Client default scan time (in seconds)</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Attack</h4>   
+                  <div style="padding-left: 10px">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="number" id="timeout" min="1" max="65536">
+                      <label class="mdl-textfield__label" for="timeout">Timeout (in seconds)</label>
+                    </div><br>
+
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="useLed">
+                      <input type="checkbox" name="useLed" id="useLed" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Use LED indicator</span>
+                    </label>
+                    
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ssidEnc">
+                      <input type="checkbox" name="ssidEnc" id="ssidEnc" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">WPA2 beacons</span>
+                    </label>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="number" id="deauthReason" min="1">
+                      <label class="mdl-textfield__label" for="deauthReason">Deauth reason</label>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://goo.gl/DCQxsU">List of deauthorization codes</a></p>
+                    
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="number" id="packetRate" min="1" max="100">
+                      <label class="mdl-textfield__label" for="packetRate">Packet rate (pkts/s)</label>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;Only for deauth attack - may cause instability! (max.100)<br>
+                    
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="channelHop" style="display: inline-block;width:300px;">
+                      <input type="checkbox" name="channelHop" id="channelHop" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Channel hopping</span>
+                    </label>&nbsp;&nbsp;&nbsp;&nbsp;Only for deauth attack - Packet Rate will be ignored!
+                    <br>
+                    <br><br><br>
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" onclick="resetSettings()">
+                      Reset
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="saveSettings()">
+                      Save
+                    </button>
+                    <br><br>
+                    <div id="saved">&nbsp;</div>
+                  </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Client names</h4>
+                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="nameList" style="margin:5px;width: calc(100% - 10px);">
+                    <thead>
+                      <tr>
+                        <th class="mdl-data-table__cell--non-numeric">MAC</th>
+                        <th>Vendor</th>
+                        <th>Hostname</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                  </table>
+
+                  <br><br><br>
+                  &nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="clearNameList()">
+                      Clear entries
+                  </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+        </div>
+        </main>
+        <p></p>
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--bottom-section">
+            <ul class="mdl-mega-footer--link-list">
+              <li><a href="https://github.com/spacehuhn" style="color:#fff;font-weight:400;" target="blank_">Stefan Kremser &copy; 2017</a></li>
+              <li><a href="https://github.com/spacehuhn/esp8266_deauther" target="blank_">Github</a></li>
+              <li><a href="https://github.com/spacehuhn/esp8266_deauther/blob/master/README.md" target="blank_">Documentation</a></li>
+            </ul>
+          </div>
+        </footer>
+        <footer class="mdl-mega-footer sub-section-attribution">
+              <a href="http://mirum.weebly.com/samuel-denty.html" target="blank_">Designed by Samuel Denty</a>
+        </footer>
+      </main>
+    </div>
+    <a href="#" onclick="restartESP()" id="reboot" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Reboot device</a>
+    <script src="material.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>
+    
